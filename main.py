@@ -5,6 +5,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import talib as ta
 
 def best(arr):
     left, right = 0, 1
@@ -27,20 +28,14 @@ def best(arr):
 def plotRollingAve(data):
     data_copy = data.copy()
     data_copy['close_5day_ave']=data_copy.Close.rolling(100).mean()
-
-    #sns.lineplot(data=data, x='Date', y='Close', errorbar=None)
-    #sns.lineplot(data=data_copy, x='Date', y='close_5day_ave', errorbar=None)
-    #plt.xlabel('Date', size=14)
-    #plt.ylabel('Close', size=14)
-
-
+    data_copy['rsi'] = ta.RSI(data['Close'])
 
     fig, axis = plt.subplots(2, 1, gridspec_kw={"height_ratios": [3, 1]}, figsize=(10,6))
     axis[0].plot(data['Date'], data['Close'])
     axis[0].plot(data_copy['Date'], data_copy['close_5day_ave'])
     axis[1].axhline(y=70, color='r', linestyle="--")
-    axis[1].axhline(y=30, color='g', linestyle="--")
-    #axis[1].plot(data_copy['rsi'])
+    axis[1].axhline(y=35, color='g', linestyle="--")
+    axis[1].plot(data_copy['Date'], data_copy['rsi'])
 
     plt.show()
 
@@ -49,7 +44,7 @@ if __name__ == '__main__':
     file = os.path.join(sys.path[0], 'AAPL.csv')
     d = pd.read_csv(file, parse_dates=['Date'], dayfirst=True)
     df = pd.DataFrame(data=d, columns=['Date', 'Close'])
-    #df1 = df.iloc[0:10500]
+    df1 = df.iloc[10200:10500]
     #closeList = df1.values.tolist()
 
-    plotRollingAve(df)
+    plotRollingAve(df1)
