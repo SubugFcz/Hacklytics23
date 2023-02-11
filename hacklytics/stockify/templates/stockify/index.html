@@ -2,6 +2,18 @@
 <head>
 </head>
 <body>
-<p>Hello world</p>
+<p>Stockify Table</p>
+<table>
+	<tr>
+		<th>Date</th>
+		<th>Close</th>
+	</tr>
+	{% for key, value in myItems %}
+		<tr>
+			<th>{{key}}</th>
+			<th>{{value}}</th>
+		</tr>
+	{% endfor %}
+</table>
 </body>
 </html>
