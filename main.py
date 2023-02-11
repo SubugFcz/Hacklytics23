@@ -4,6 +4,7 @@ import pandas as pd
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def best(arr):
     left, right = 0, 1
@@ -23,29 +24,32 @@ def best(arr):
            f'and we can sell at {maxDate} with price ${float(round(maxPrice, 2))}. Therefore, ' \
            f'we have {float(round(profit,2))}% profit'
 
-def plotRegress(arr):
-    x = []
-    y = []
-    for i in range(len(arr)):
-        x.append(i)
-        y.append(arr[i][1])
-    x = np.array(x)
-    y = np.array(y)
+def plotRollingAve(data):
+    data_copy = data.copy()
+    data_copy['close_5day_ave']=data_copy.Close.rolling(100).mean()
 
-    a, b = np.polyfit(x, y, 1)
+    #sns.lineplot(data=data, x='Date', y='Close', errorbar=None)
+    #sns.lineplot(data=data_copy, x='Date', y='close_5day_ave', errorbar=None)
+    #plt.xlabel('Date', size=14)
+    #plt.ylabel('Close', size=14)
 
-    plt.plot(x, y, 'o', label='Original data')
-    plt.plot(x, a*x + b, 'r', label='Fitted line')
-    plt.legend()
+
+
+    fig, axis = plt.subplots(2, 1, gridspec_kw={"height_ratios": [3, 1]}, figsize=(10,6))
+    axis[0].plot(data['Date'], data['Close'])
+    axis[0].plot(data_copy['Date'], data_copy['close_5day_ave'])
+    axis[1].axhline(y=70, color='r', linestyle="--")
+    axis[1].axhline(y=30, color='g', linestyle="--")
+    #axis[1].plot(data_copy['rsi'])
+
     plt.show()
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     file = os.path.join(sys.path[0], 'AAPL.csv')
-    d = pd.read_csv(file)
+    d = pd.read_csv(file, parse_dates=['Date'], dayfirst=True)
     df = pd.DataFrame(data=d, columns=['Date', 'Close'])
-    df1 = df.iloc[0:5]
-    closeList = df1.values.tolist()
+    #df1 = df.iloc[0:10500]
+    #closeList = df1.values.tolist()
 
-    plotRegress(closeList)
-    # print(best(closeList))
+    plotRollingAve(df)
