@@ -25,7 +25,7 @@ def best(arr):
            f'and we can sell at {maxDate} with price ${float(round(maxPrice, 2))}. Therefore, ' \
            f'we have {float(round(profit,2))}% profit'
 
-def plotRollingAve(data):
+def plotRSI(data):
     data_copy = data.copy()
     data_copy['close_5day_ave']=data_copy.Close.rolling(100).mean()
     data_copy['rsi'] = ta.RSI(data['Close'])
@@ -36,5 +36,15 @@ def plotRollingAve(data):
     axis[1].axhline(y=70, color='r', linestyle="--")
     axis[1].axhline(y=35, color='g', linestyle="--")
     axis[1].plot(data_copy['Date'], data_copy['rsi'])
+
+    plt.show()
+
+def plotOBV(data):
+    data_copy = data.copy()
+    data_copy['obv'] = ta.OBV(data['Close'],data['Volume'])
+    data_copy['obv_EMA'] = ta.EMA(data_copy['obv'])
+
+    plt.plot(data_copy['Date'], data_copy['obv_EMA'])
+    plt.plot(data_copy['Date'], data_copy['obv'])
 
     plt.show()
