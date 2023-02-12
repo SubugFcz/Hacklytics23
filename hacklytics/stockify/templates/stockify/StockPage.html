@@ -11,12 +11,10 @@
 	</tr>
 	{% for item in myItems %}
 		<tr>
-		{% for name, rsi, obv, ema in item %}
-			<th>{{name}}</th>
-			<th>{{rsi}}</th>
-			<th>{{obv}}</th>
-			<th>{{ema}}</th>
-		{% endfor %}
+			<th>{{item.name}}</th>
+			<th>{{item.rsi}}</th>
+			<th>{{item.obv}}</th>
+			<th>{{item.ema}}</th>
 		</tr>
 	{% endfor %}
 </table>
