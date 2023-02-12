@@ -8,5 +8,5 @@ stockNameDict = {
     "MU": "Micron",
     "NFLX": "Netflix",
     "NVDA": "Nvidia",
-    "STX": "Sigit Technology"
+    "STX": "Seagate Technology"
 }
