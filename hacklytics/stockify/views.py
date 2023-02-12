@@ -4,7 +4,6 @@ from .functions import *
 from django.conf import settings
 import os
 import pandas as pd
-from .StockName import stockNameDict as snDict
 from .forms import *
 
 
@@ -21,7 +20,8 @@ def welcomePage(response):
     return render(response, "stockify/welcomePage.html", {"form": form})#1
 
 def stockPage(response, stockDate):
-    dates = stockDate.split("-")
-    return render(response, "stockify/stockPage.html", {"stockDate": stockDate})
+    dates = stockDate.split("-")  
+    returnList = dateToDf(dates[0], dates[1])
+    return render(response, "stockify/stockPage.html", {"stockDate": stockDate, "returnList": returnList})
     
 
