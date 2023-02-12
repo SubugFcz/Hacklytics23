@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import talib as ta
-from StockName import stockNameDict
+from .StockName import stockNameDict
 from django.conf import settings
 
 def plotRSI(data, name):
@@ -32,7 +32,7 @@ def plotOBV(data, name):
 def dateToDf(dateStart, dateEnd):
     returnList = list()
     for fileName in list(stockNameDict.keys()):
-        file = os.path.join(settings.BASE_DIR, f"stockify/{fileName}.csv")
+        file = os.path.join(settings.BASE_DIR, f"stockify/csvfiles/{fileName}.csv")
         d = pd.read_csv(file, parse_dates=['Date'], dayfirst=True)
         #df = pd.DataFrame(data=d, columns=['Date', 'Close'])
         df2 = pd.DataFrame(data=d, columns=['Date', 'Volume', 'Close'])
