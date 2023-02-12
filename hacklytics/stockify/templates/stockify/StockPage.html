@@ -2,16 +2,18 @@
 {% block content %}
 <p>Stockify Table</p>
 {{stockDate}}
-{{returnList}}
 <table border="1">
 	<tr>
-		<th>Date</th>
-		<th>Close</th>
+		<th>Stock</th>
+		<th>RSI</th>
+		<th>OBV</th>
+		<th>EMA</th>
 	</tr>
-	{% for key, value in myItems %}
+	{% for item in myItems %}
 		<tr>
-			<th>{{key}}</th>
+		{% for key, value in item %}
 			<th>{{value}}</th>
+		{% endfor %}
 		</tr>
 	{% endfor %}
 </table>
