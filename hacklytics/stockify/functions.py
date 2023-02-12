@@ -25,7 +25,7 @@ def best(arr):
            f'and we can sell at {maxDate} with price ${float(round(maxPrice, 2))}. Therefore, ' \
            f'we have {float(round(profit,2))}% profit'
 
-def plotRollingAve(data):
+def plotRSI(data):
     data_copy = data.copy()
     data_copy['close_5day_ave']=data_copy.Close.rolling(100).mean()
     data_copy['rsi'] = ta.RSI(data['Close'])
@@ -38,3 +38,26 @@ def plotRollingAve(data):
     axis[1].plot(data_copy['Date'], data_copy['rsi'])
 
     plt.show()
+
+"""def plotOBV(data):
+    data_copy = data.copy()
+
+    OBV = []
+    OBV.append(0)
+
+    for i in range (1, len(data_copy.Close)):
+        if data_copy.Close[i] > data_copy.Close[i-1]:
+            OBV.append(OBV[-1] + data_copy.Volume[i])
+        elif data_copy.Close[i] < data_copy.Close[i-1]:
+            OBV.append(OBV[-1] - data_copy.Volume[i])
+        else:
+            OBV.append(OBV[-1])
+    
+    data_copy['OBV'] = OBV
+    data_copy['OBV_EMA'] = data_copy['OBV'].ewm(span=20).mean()
+
+    fig, axis = plt.subplots(2, 1, gridspec_kw={"height_ratios": [3, 1]}, figsize=(10,6))
+    axis[0].plot(data['Date'], data['Close'])
+    axis[1].plot(data_copy['OBV'], data_copy['OBV_EMA'])
+
+    plt.show()"""
