@@ -4,6 +4,10 @@ import os
 import numpy as np
 import functions as fn
 
+# List of 10 more .csv files
+files = ['file1.csv', 'file2.csv', 'file3.csv', 'file4.csv', 'file5.csv', 
+         'file6.csv', 'file7.csv', 'file8.csv', 'file9.csv']
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     file = os.path.join(sys.path[0], 'AAPL.csv')
