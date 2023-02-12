@@ -29,7 +29,7 @@ def plotOBV(data, name):
     plt.plot(data_copy['Date'], data_copy['obv'])
     plt.title(f"On Balance Volume - {name}")
 
-def dateToDf(dateStart, dateEnd):
+def dateToDf():
     returnList = list()
     for fileName in list(stockNameDict.keys()):
         file = os.path.join(settings.BASE_DIR, f"stockify/csvfiles/{fileName}.csv")
@@ -39,14 +39,17 @@ def dateToDf(dateStart, dateEnd):
         df2['rsi'] = ta.RSI(df2['Close'])
         df2['obv'] = ta.OBV(df2['Close'],df2['Volume'])
         df2['obv_EMA'] = ta.EMA(df2['obv'])
-        rsiMean = df2['rsi'].mean()
-        obvMean = df2['obv'].mean()
-        emaMean = df2['obv_EMA'].mean()
+        currRSI = df2['rsi'].loc['01-08-2021']
+        currOBV = df2['obv'].loc['01-08-2021']
+        currEMA = df2['obv_EMA'].loc['01-08-2021']
+        #rsiMean = df2['rsi'].mean()
+        #obvMean = df2['obv'].mean()
+        #emaMean = df2['obv_EMA'].mean()
         returnList.append(dict({
             "name": stockNameDict.get(fileName),
-            "rsi": rsiMean,
-            "obv": obvMean,
-            "ema": emaMean})
+            "rsi": currRSI,
+            "obv": currOBV,
+            "ema": currEMA})
         )
     return returnList
 

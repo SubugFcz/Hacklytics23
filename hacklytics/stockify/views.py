@@ -21,7 +21,7 @@ def welcomePage(response):
 
 def stockPage(response, stockDate):
     dates = stockDate.split("-")  
-    returnList = dateToDf(stockDate, stockDate)
+    returnList = dateToDf()
     return render(response, "stockify/stockPage.html", {"stockDate": stockDate, "myItems": returnList})
     
 
