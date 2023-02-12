@@ -1,16 +1,27 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .functions import *
 from django.conf import settings
 import os
 import pandas as pd
+from .StockName import stockNameDict as snDict
+from .forms import *
 
 
 # Create your views here.
 def welcomePage(response):
-    file = os.path.join(settings.BASE_DIR, "stockify/csvfiles/AAPL.csv")
-    d = pd.read_csv(file, parse_dates=['Date'], dayfirst=True)
-    df = pd.DataFrame(data=d, columns=['Date', 'Close'])
-    closeList = df.values.tolist()
-    return render(response, "stockify/index.html",{"myItems": closeList})
+    if response.method == "POST":
+        form = StockDateInputForm(response.POST)
+        if form.is_valid():
+            stockDate1 = str(form.cleaned_data['stockDate'])
+            return redirect(f"/stockify/stock/{stockDate1}")
+    else:
+        form = StockDateInputForm()
+
+    return render(response, "stockify/welcomePage.html", {"form": form})#1
+
+def stockPage(response, stockDate):
+    dates = stockDate.split("-")
+    return render(response, "stockify/stockPage.html", {"stockDate": stockDate})
+    
 

@@ -4,7 +4,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import talib as ta
+#import talib as ta
 
 def plotRSI(data, name):
     data_copy = data.copy()
