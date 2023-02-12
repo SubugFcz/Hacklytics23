@@ -11,8 +11,11 @@
 	</tr>
 	{% for item in myItems %}
 		<tr>
-		{% for key, value in item %}
-			<th>{{value}}</th>
+		{% for name, rsi, obv, ema in item %}
+			<th>{{name}}</th>
+			<th>{{rsi}}</th>
+			<th>{{obv}}</th>
+			<th>{{ema}}</th>
 		{% endfor %}
 		</tr>
 	{% endfor %}
