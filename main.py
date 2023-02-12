@@ -20,6 +20,5 @@ if __name__ == '__main__':
         df2 = pd.DataFrame(data=d, columns=['Date', 'Volume', 'Close'])
         df1 = df.iloc[10200:10500]
         df3 = df2.iloc[10200:10500]
-        #closeList = df1.values.tolist()
         fn.plotOBV(df3, name)
         fn.plotRSI(df1, name)
