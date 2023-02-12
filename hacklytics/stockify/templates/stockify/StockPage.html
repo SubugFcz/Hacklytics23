@@ -1,8 +1,7 @@
-<html>
-<head>
-</head>
-<body>
+{% extends 'stockify/base.html' %}
+{% block content %}
 <p>Stockify Table</p>
+{{stockDate}}
 <table border="1">
 	<tr>
 		<th>Date</th>
@@ -15,5 +14,5 @@
 		</tr>
 	{% endfor %}
 </table>
-</body>
-</html>
+<a href="{% url 'Welcome' %}"><button>Back</button></a>
+{% endblock %}

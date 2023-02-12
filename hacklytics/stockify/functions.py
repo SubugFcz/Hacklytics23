@@ -5,7 +5,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import talib as ta
+#import talib as ta
 
 def best(arr):
     left, right = 0, 1
@@ -25,7 +25,7 @@ def best(arr):
            f'and we can sell at {maxDate} with price ${float(round(maxPrice, 2))}. Therefore, ' \
            f'we have {float(round(profit,2))}% profit'
 
-def plotRSI(data):
+"""def plotRSI(data):
     data_copy = data.copy()
     data_copy['close_5day_ave']=data_copy.Close.rolling(100).mean()
     data_copy['rsi'] = ta.RSI(data['Close'])
@@ -39,7 +39,7 @@ def plotRSI(data):
 
     plt.show()
 
-"""def plotOBV(data):
+def plotOBV(data):
     data_copy = data.copy()
 
     OBV = []
