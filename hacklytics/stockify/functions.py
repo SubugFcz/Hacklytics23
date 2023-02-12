@@ -60,7 +60,7 @@ names = ['Apple', 'Adobe', 'Amazon', 'Cisco', 'Ford Motor',
 
 def extract_data(start_date, end_date, file):
     # Read the CSV file into a pandas dataframe
-    df = pd.read_csv(os.path.join(sys.path[0], file))
+    df = pd.read_csv(os.path.join(settings.BASE_DIR, f"stockify/csvfiles/{file}"))
     
     # Convert the "Date" column to datetime format
     df["Date"] = pd.to_datetime(df["Date"], format="%d-%m-%Y")

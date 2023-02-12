@@ -6,4 +6,6 @@ import functions as fn
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-    print(fn.superFunction('04-12-2021', '15-12-2021'))
+    print(fn.superFunction('04-02-2021', '15-05-2021'))
+    d = fn.superFunction('04-02-2021', '15-05-2021')
+    print(d.values.tolist())

@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import talib as ta
+
 from datetime import datetime
 
 files = ['AAPL.csv', 'ADBE.csv', 'AMZN.csv', 'CSCO.csv', 'FTNT.csv', 
@@ -82,6 +83,6 @@ def add_rank_column(date1, date2):
 def superFunction(date1, date2):
     df = add_rank_column(date1, date2)
     df['Rank_Sum'] = df['Rank_RSI'] + df['Rank_OBV']
-    df['Rank_Sum'] = df['Rank_Sum'].rank(ascending=False, method='dense')
+    df['Rank_Sum'] = df['Rank_Sum'].rank(ascending=false, method='dense')
     df['Rank_Sum'] = (df['Rank_Sum'].max() - df['Rank_Sum']) + 1
     return df
