@@ -22,6 +22,7 @@ def welcomePage(response):
 def stockPage(response, stockDate):
     dates = stockDate.split(",")  
     returnDf = superFunction(dates[0], dates[1])
+    #04-02-2021,15-05-2021
     returnList = returnDf.values.tolist()
     return render(response, "stockify/stockPage.html", {"stockDate": stockDate, "myItems": returnList})
     
