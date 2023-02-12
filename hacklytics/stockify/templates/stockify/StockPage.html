@@ -7,14 +7,18 @@
 		<th>Stock</th>
 		<th>RSI</th>
 		<th>OBV</th>
-		<th>EMA</th>
+		<th>rank RSI</th>
+		<th>rank OBV</th>
+		<th>rank Sum</th>
 	</tr>
-	{% for item in myItems %}
+	{% for name, rsi, obv, rank1, rank2, rank3 in myItems %}
 		<tr>
-			<th>{{item.name}}</th>
-			<th>{{item.rsi}}</th>
-			<th>{{item.obv}}</th>
-			<th>{{item.ema}}</th>
+			<th>{{name}}</th>
+			<th>{{rsi}}</th>
+			<th>{{obv}}</th>
+			<th>{{rank1}}</th>
+			<th>{{rank2}}</th>
+			<th>{{rank3}}</th>
 		</tr>
 	{% endfor %}
 </table>

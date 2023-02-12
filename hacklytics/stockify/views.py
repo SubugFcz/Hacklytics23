@@ -20,8 +20,9 @@ def welcomePage(response):
     return render(response, "stockify/welcomePage.html", {"form": form})#1
 
 def stockPage(response, stockDate):
-    dates = stockDate.split("-")  
-    returnList = dateToDf()
+    dates = stockDate.split(",")  
+    returnDf = superFunction(dates[0], dates[1])
+    returnList = returnDf.values.tolist()
     return render(response, "stockify/stockPage.html", {"stockDate": stockDate, "myItems": returnList})
     
 
